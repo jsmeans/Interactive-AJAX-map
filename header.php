@@ -15,7 +15,7 @@
 			
 			<div class="logo">
 
-				<a href="<?php bloginfo('siteurl'); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/logo.png"></a>
+				<a href="<?php bloginfo('siteurl'); ?>"></a>
 
 			</div>
 			
