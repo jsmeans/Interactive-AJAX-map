@@ -1,38 +1,7 @@
 		
 
-		<footer>
-
-		
-
-			<div>
-				<p>Extra Info</p>
-
-			</div>
-
+		<footer>		
 			
-			<div class="container">
-				<div class="footer_left">
-					<?php if(dynamic_sidebar('footer_left')): ?>
-						<?php else: ?>
-
-						
-					<?php endif; ?>
-				</div>
-				<div class="footer_middle">
-					<?php if(dynamic_sidebar('footer_middle')): ?>
-						<?php else: ?>
-						
-
-					<?php endif; ?>
-				</div>
-				<div class="right-footer">
-					<?php if(dynamic_sidebar('footer_right')): ?>
-						<?php else: ?>
-						
-						
-					<?php endif; ?>
-				</div>
-			</div>
 			
 			<div class="footer-bottom">
 

@@ -15,7 +15,7 @@
 		</ul>
 		<div class="excerpt">
 
-			<?php the_content(); ?>
+			<?php the_field('story'); ?>
 
 
 

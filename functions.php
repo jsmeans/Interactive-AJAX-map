@@ -7,15 +7,20 @@ wp_enqueue_style( 'main' ,  get_template_directory_uri() . '/style.css');
 }
 
 function theme_js(){
-
-	wp_enqueue_script('theme_js' ,  get_template_directory_uri() . '/js/theme.js' , array('jquery'), '', true );
-	wp_enqueue_script('jquery_js' ,  get_template_directory_uri() . '/js/jquery-1.10.2.min.js' , array('jquery'), '', true );
+    wp_enqueue_script('jquery_js' ,  get_template_directory_uri() . '/js/jquery-1.10.2.min.js' , array('jquery'), '', true );
 	wp_enqueue_script('jqueryui' ,"http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js", array('jquery'), '', true );
+	wp_enqueue_script('theme_js' ,  get_template_directory_uri() . '/js/theme.js' , array('jquery'), '', true );
+	wp_enqueue_script( 'imap', plugins_url( 'imap/imap.js' ), array('jquery'), '1.0', true );
+    
+wp_localize_script( 'imap', 'myimap', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' )
+    ));
 }
 
 add_action('wp_enqueue_scripts', 'theme_js');
 
 add_action ( 'wp_enqueue_scripts', 'theme_styles');
+
 
 
 function main_nav()
@@ -79,4 +84,63 @@ register_sidebar( $args );
 create_widget('Left Footer', "footer_left", "Displays in the bottom left of footer");
 create_widget('Middle Footer', "footer_middle", "Displays in the bottom middle of footer");
 create_widget('Right Footer', "footer_right", "Displays in the bottom right of footer");
+
+
+
+add_filter( 'add_menu_classes', 'show_pending_number');
+function show_pending_number( $menu ) {
+    $type = "story";
+    $status = "pending";
+    $num_posts = wp_count_posts( $type, 'readable' );
+    $pending_count = 0;
+    if ( !empty($num_posts->$status) )
+        $pending_count = $num_posts->$status;
+
+    // build string to match in $menu array
+    if ($type == 'post') {
+        $menu_str = 'edit.php';
+    } else {
+        $menu_str = 'edit.php?post_type=' . $type;
+    }
+
+    // loop through $menu items, find match, add indicator
+    foreach( $menu as $menu_key => $menu_data ) {
+        if( $menu_str != $menu_data[2] )
+            continue;
+        $menu[$menu_key][0] .= " <span class='update-plugins count-$pending_count'><span class='plugin-count'>" . number_format_i18n($pending_count) . '</span></span>';
+    }
+    return $menu;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
