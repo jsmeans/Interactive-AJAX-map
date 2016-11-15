@@ -286,7 +286,8 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(200, 200, 200, 0.9); }
+  background-color: rgba(200, 200, 200, 0.9);
+  z-index: 500; }
 
 .info-box {
   position: relative;

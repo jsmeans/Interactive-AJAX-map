@@ -3,21 +3,19 @@
 
 
 <div class="hoverinfo">
-<p><?php 
 
-$categories = get_the_category( $post->ID );
-$state = get_categories(array(
-	'exclude' => 
-
-	));
-
-
-
-    echo $category->term_id . ', ' . $category->slug . ', ' . $category->name . '<br />';
-?></p>
 <p><?php
-$statecat = get_the_category( $post->ID );
-$mycats=get_categories ('include=$statecat AND 53');
+
+$statecat = get_category_by_slug( 'OK' );
+
+$id = $statecat->term_id;
+
+echo $id;
+
+$mycats=get_categories ('exclude=$id');
+
+
+
 echo  $mycats[0]->category_count.' Exhibitions';
 ?></p>
 <p><?php
